@@ -8,6 +8,19 @@ pipeline {
         timestamps()
     }
     stages {
+        stage("docker logi ") {
+            steps {
+                echo "  ================== start docker login =================="
+                withCredentials([usernamePassword(credentialsId: 'dockerhub_semaev', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh """
+                    docker login -u $USERNAME
+                    """
+                    sh """
+                    $PASSWORD
+                    """
+                }
+            }
+        }
         stage("create docker image") {
             steps {
                 echo "  ================== start building image =================="
@@ -19,9 +32,7 @@ pipeline {
         stage("docker PUSH") {
                 steps {
                     echo "  ==================  start pushing image =================="
-                    dir('docker') {
-                        sh 'docker push pumpumpam/cicd_test:latest'
-                    }
+                    sh 'docker push pumpumpam/cicd_test:latest'
                 }
             }
     }
