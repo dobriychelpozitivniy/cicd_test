@@ -13,10 +13,7 @@ pipeline {
                 echo "  ================== start docker login =================="
                 withCredentials([usernamePassword(credentialsId: 'docker_hub_private_key', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh """
-                    docker login -u $USERNAME
-                    """
-                    sh """
-                    $PASSWORD
+                    echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
                     """
                 }
             }
