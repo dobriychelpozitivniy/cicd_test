@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo "               start building image =================="
                 dir('docker') {
-                    sh 'docker build -t mybuild:latest .'
+                    sh 'docker build -t pumpumpam/cicd_test:latest .'
                 }
             }
         }
