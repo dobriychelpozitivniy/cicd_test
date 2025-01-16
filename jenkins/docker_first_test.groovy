@@ -10,11 +10,19 @@ pipeline {
     stages {
         stage("create docker image") {
             steps {
-                echo "               start building image =================="
+                echo "  ================== start building image =================="
                 dir('docker') {
                     sh 'docker build -t pumpumpam/cicd_test:latest .'
                 }
             }
         }
+        stage("docker PUSH") {
+                steps {
+                    echo "  ==================  start pushing image =================="
+                    dir('docker') {
+                        sh 'docker push pumpumpam/cicd_test:latest'
+                    }
+                }
+            }
     }
 }
