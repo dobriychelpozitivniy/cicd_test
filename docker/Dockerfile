@@ -1,5 +1,14 @@
-FROM alpine
-RUN apk add --no-cache curl wget busybox-extras netcat-openbsd python py-pip
-RUN pip install awscli
-RUN apk --purge -v del py-pip
-CMD tail -f /dev/null
+# Используем Alpine Linux как базовый образ
+FROM alpine:latest
+
+# Устанавливаем необходимые пакеты
+RUN apk add --no-cache \
+    curl \
+    wget \
+    bash
+
+# Создаём простой файл для тестирования
+RUN echo "Hello, Docker!" > /hello.txt
+
+# Команда, которая будет выполнена при запуске контейнера
+CMD ["cat", "/hello.txt"]
