@@ -8,7 +8,7 @@ RUN apk add --no-cache \
     bash
 
 # Создаём простой файл для тестирования
-RUN echo "Hello, Docker!" > /hello.txt
+RUN echo "Hello, Docker Auto Build After Commit!" > /hello.txt
 
 # Команда, которая будет выполнена при запуске контейнера
 CMD ["cat", "/hello.txt"]
