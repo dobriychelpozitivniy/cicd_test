@@ -11,7 +11,7 @@ pipeline {
             steps {
                 echo "               start building image =================="
                 dir('docker') {
-                    // Дополнительные шаги для создания Docker-образа
+                    sh 'docker build .'
                 }
             }
         }
